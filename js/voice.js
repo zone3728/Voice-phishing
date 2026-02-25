@@ -399,6 +399,7 @@ function playAudioSequence(files, overlapSec, onDone){
 // UI HELPERS
 // =========================
 function showOverlay(){
+  document.body.classList.add("call-open");
   callOverlay?.classList.add("show");
   callOverlay?.setAttribute("aria-hidden","false");
 }
@@ -414,6 +415,7 @@ function resetPanels(){
   pendingNextCut = -1;
 }
 function hideOverlay(){
+  document.body.classList.remove("call-open");
   stopRingtone();
   stopCallAudio();
   stopCallTimer();
