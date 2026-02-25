@@ -301,6 +301,11 @@
       bubble.addEventListener("pointercancel", cancelLongPress);
       bubble.addEventListener("pointermove", ()=>{ lpMoved = true; });
 
+      // ★ 스마트폰의 기본 우클릭/메뉴 뜨는 것을 강제 차단합니다.
+      bubble.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+      });
+
       const meta = document.createElement("div");
       meta.className = "meta";
       meta.textContent = nowLabel();
