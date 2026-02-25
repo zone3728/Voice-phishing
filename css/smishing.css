@@ -191,7 +191,7 @@ body{
   z-index: 100;
 }
 
-/* Screen off (화면 꺼짐 검은 배경) */
+/* Screen off */
 .screen-off{
   position:absolute;
   inset:0;
@@ -206,7 +206,7 @@ body{
   pointer-events: auto;
 }
 
-/* Notification (메시지 도착 알림창) */
+/* Notification */
 .noti{
   position: absolute;
   left: 12px;
@@ -238,12 +238,13 @@ body{
 .noti-time{ margin-left: auto; font-size: 11px; color: #888; white-space: nowrap; }
 
 /* Top bar */
+/* 수정 후: margin-top을 0으로 만들어 X 버튼과 높이를 완벽히 맞춤 */
 .sms-top{
   display:flex;
   align-items:center;
   gap:10px;
-  padding: 0;
-  margin-top: 52px;
+  padding-right: 48px; /* 글자가 X 버튼과 겹치지 않게 우측 공간 확보 */
+  margin-top: 0px;     /* 위로 바짝 올려서 X 버튼과 수평 정렬 */
 }
 .sms-back{
   border: 1px solid var(--line);
@@ -257,7 +258,6 @@ body{
 .sms-top-title{ font-weight: 900; }
 .sms-top-sub{ font-size: 12px; color: var(--muted); }
 
-/* 상단 IPHONE / GALAXY 글자 완전히 삭제 */
 .sms-chip{
   display: none !important; 
 }
@@ -319,13 +319,19 @@ body[data-os="galaxy"] .sms-banner{
   gap: 6px;
 }
 .msg.in{ align-self:flex-start; }
+
+/* ★ 모바일 기기에서 꾹 눌렀을 때 기본 텍스트 복사 메뉴가 뜨는 것을 방지 ★ */
 .msg .bubble{
   border-radius: 18px;
   padding: 10px 12px;
   background: rgba(255,255,255,.86);
   border: 1px solid rgba(0,0,0,.08);
   box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  -webkit-touch-callout: none; /* iOS Safari 기본 메뉴 차단 */
+  -webkit-user-select: none;   /* 텍스트 선택 차단 */
+  user-select: none;           /* 텍스트 선택 차단 */
 }
+
 body[data-os="galaxy"] .msg .bubble{
   background: rgba(0,0,0,.32);
   border: 1px solid rgba(255,255,255,.14);
@@ -398,7 +404,7 @@ body[data-os="galaxy"] .msg .meta{ color: rgba(255,255,255,.70); }
 .web-h1{ font-weight: 900; }
 .web-p{ color: rgba(17,24,39,.78); margin-top: 6px; line-height: 1.5; font-size: 13px; }
 
-/* Quiz in CUT2 & CUT3 */
+/* Quiz */
 .quiz{
   margin-top: 10px;
   border-radius: 18px;
@@ -571,23 +577,7 @@ body[data-os="galaxy"] .msg .meta{ color: rgba(255,255,255,.70); }
   border: 1px solid #cbd5e1;
 }
 
-/* CUT 2에서 CUT 3으로 넘어가는 함정 버튼 */
-.trap-btn {
-  width: 100%;
-  border: none;
-  border-radius: 14px;
-  padding: 14px;
-  font-size: 15px;
-  font-weight: 900;
-  color: #fff;
-  background: #2563eb;
-  cursor: pointer;
-  margin-top: 10px;
-  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-}
-.trap-btn:active { transform: translateY(1px); }
-
-/* 그럴듯한 가짜 입력 폼 UI */
+/* 가짜 폼 UI */
 .fake-form-box {
   background: #fff;
   border: 1px solid #e2e8f0;
