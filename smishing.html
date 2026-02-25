@@ -1,0 +1,152 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>스미싱 체험</title>
+  <!-- 보이스 styles.css 로드 금지(꼬임 방지) -->
+  <link rel="stylesheet" href="css/smishing.css" />
+</head>
+<body>
+  <div class="app">
+
+    <div class="back-row">
+      <button class="back-btn" id="backHome">← 메인</button>
+    </div>
+
+    <div class="subhead" aria-label="스미싱 체험 헤더">
+      <img class="subhead-icon" src="images/tile_smishing.png" alt="스미싱" />
+      <div class="subhead-text">
+        <h1 class="subhead-title">스미싱 체험</h1>
+        <p class="subhead-sub">상황을 선택하면 점수가 저장되고 메인 위험도가 자동 반영됩니다.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+
+      <h2 class="step-title">1) 상황 선택</h2>
+
+      <ul class="scenario-list" id="scenarioRow" aria-label="시나리오 선택 목록"></ul>
+
+      <div class="hr"></div>
+
+      <h2 class="step-title">2) 결과 반영</h2>
+      <p class="notice">
+        선택한 시나리오와 진행 결과에 따라 점수가 저장되고,
+        메인 화면의 “나의 전화금융사기 위험도”가 자동 갱신됩니다.
+      </p>
+
+      <div class="kpi">
+        <div class="item">
+          <div class="label">저장될 점수</div>
+          <div class="value" id="pickScore">50</div>
+        </div>
+        <div class="item">
+          <div class="label">다음 동작</div>
+          <div class="value">메인으로 돌아가 확인</div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <button class="primary" id="applyScore" style="width:100%;">
+        이 점수로 메인 위험도 갱신하기
+      </button>
+
+    </div>
+  </div>
+
+  <!-- 스미싱 오버레이 -->
+  <div class="sms-overlay" id="smsOverlay" aria-hidden="true">
+    <div class="sms-stage" role="dialog" aria-label="스미싱 메시지 화면">
+
+      <button class="sms-close" id="smsClose" aria-label="닫기">×</button>
+
+      <!-- 잠금(검정) -->
+      <div class="screen-off hidden" id="screenOff"></div>
+
+      <!-- 상단 알림 -->
+      <div class="noti hidden" id="noti" role="button" tabindex="0" aria-label="새 메시지 알림">
+        <div class="noti-app">메시지</div>
+        <div class="noti-mid">
+          <div class="noti-title">새로운 메시지가 도착했습니다.</div>
+          <div class="noti-preview" id="notiPreview">미리보기…</div>
+        </div>
+        <div class="noti-time" id="notiTime">지금</div>
+      </div>
+
+      <!-- 상단 바 -->
+      <div class="sms-top hidden" id="smsTop">
+        <button class="sms-back" id="btnBackToScenario">← 상황 선택</button>
+        <div class="sms-top-center">
+          <div class="sms-top-title" id="topTitle">메시지</div>
+          <div class="sms-top-sub" id="topSub">지금</div>
+        </div>
+        <div class="sms-chip" id="themeChip">THEME</div>
+      </div>
+
+      <!-- CUT1: 메시지 -->
+      <div class="sms-screen hidden" id="viewThread">
+        <div class="sms-banner">
+          의심스러운 문자는 <b>링크 클릭 절대 금지</b> · <b>삭제</b> 또는 <b>스팸 신고</b>
+        </div>
+        <div class="sms-thread" id="smsThread"></div>
+      </div>
+
+      <!-- CUT2/CUT3: 웹 -->
+      <div class="web-view hidden" id="viewWeb">
+        <div class="web-top">
+          <button class="sms-back" id="btnWebBack">← 메시지</button>
+          <div class="web-center">
+            <div class="web-title" id="webTitle">가짜 사이트</div>
+            <div class="web-sub" id="webStage">CUT 2</div>
+          </div>
+        </div>
+
+        <div class="web-frame">
+          <div class="web-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <div class="addr" id="webAddr">http://</div>
+          </div>
+
+          <div class="web-body" id="webBody"></div>
+        </div>
+      </div>
+
+      <!-- 3초 힌트 -->
+      <div class="hint hidden" id="hint">
+        💡 도움말: <b>파란색 링크</b>를 누르거나, <b>메시지 말풍선을 1초간 꾹</b> 눌러보세요!
+      </div>
+
+      <!-- Bottom Sheet -->
+      <div class="sheet-backdrop hidden" id="sheetBackdrop"></div>
+      <div class="sheet hidden" id="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">메시지 옵션</div>
+        <div class="sheet-actions">
+          <button class="sheet-btn" data-action="reply">답장</button>
+          <button class="sheet-btn" data-action="copy">텍스트 복사</button>
+          <button class="sheet-btn" data-action="share">공유</button>
+          <button class="sheet-btn danger" data-action="delete">삭제 🗑️</button>
+          <button class="sheet-btn danger" data-action="spam">스팸 신고 🚫</button>
+        </div>
+        <button class="sheet-cancel" id="sheetCancel">닫기</button>
+      </div>
+
+      <!-- Result Modal (보이스 result-sheet 역할) -->
+      <div class="modal-backdrop hidden" id="modalBackdrop"></div>
+      <div class="modal hidden" id="modal">
+        <div class="modal-title" id="modalTitle">제목</div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+
+      <div class="toast hidden" id="toast">완료</div>
+    </div>
+  </div>
+
+  <script src="js/smishing_data.js"></script>
+  <script src="js/score_util.js"></script>
+  <script src="js/smishing.js"></script>
+</body>
+</html>

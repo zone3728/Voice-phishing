@@ -1,0 +1,287 @@
+﻿{
+  "themes": [
+    {
+      "id": "S1",
+      "name": "가족 사칭",
+      "platformTheme": "kakao",
+      "icon": "👨‍👩‍👧",
+      "rooms": [
+        {
+          "id": "S1-A",
+          "title": "아들 - 액정 파손",
+          "preview": "엄마 나 폰 떨어뜨려서 액정 깨졌어ㅠㅠ",
+          "cut3Type": "TRANSFER",
+          "phase1": {
+            "messages": [
+              { "id": "p1-1", "type": "system", "text": "📞 시스템: 보이스톡 부재중", "delayMs": 0 },
+              { "id": "p1-2", "type": "opponent", "text": "엄마 나 폰 떨어뜨려서 액정 깨졌어ㅠㅠ", "delayMs": 0 },
+              { "id": "p1-3", "type": "opponent", "text": "지금 임시로 PC로 연락 중이야.", "delayMs": 1000, "isRedFlag": true, "redFlagText": "본인확인을 회피하며 접속수단을 바꿉니다." },
+              { "id": "p1-4", "type": "opponent", "text": "급한 결제 때문에 지금 바로 답장해줘.", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "기존 번호로 전화해 본인 확인", "action": "DEFENSE" },
+              { "text": "차단/대화 종료", "action": "DEFENSE" },
+              { "text": "(위험) 얼마 필요한데?", "action": "FAIL_TO_P2" }
+            ]
+          },
+          "phase2": {
+            "messages": [
+              { "id": "p2-1", "type": "opponent", "text": "지금 [[AMOUNT]] 필요해. 시간이 없어.", "delayMs": 1000 },
+              { "id": "p2-2", "type": "opponent", "text": "인증이 안 되니까 [[BANK]] [[ACCOUNT]]로 대신 보내줘.", "delayMs": 1000, "isRedFlag": true, "redFlagText": "제3자 계좌 송금 요구는 핵심 위험 신호입니다." },
+              { "id": "p2-3", "type": "fake_button", "text": "송금 진행(훈련 버튼)", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "통화 확인 없이는 절대 진행 안 함", "action": "DEFENSE" },
+              { "text": "(파국) 요구대로 진행한다", "action": "CRITICAL_FAIL" }
+            ]
+          }
+        },
+        {
+          "id": "S1-B",
+          "title": "딸 - 번호 변경",
+          "preview": "아빠 나 폰 고장나서 번호 임시로 바꿨어.",
+          "cut3Type": "TRANSFER",
+          "phase1": {
+            "messages": [
+              { "id": "p1-1", "type": "system", "text": "📞 시스템: 영상통화 취소됨", "delayMs": 0 },
+              { "id": "p1-2", "type": "opponent", "text": "아빠 나 폰 고장나서 번호 임시로 바꿨어.", "delayMs": 0, "isRedFlag": true, "redFlagText": "번호 변경 후 기존 번호 삭제 유도는 위험합니다." },
+              { "id": "p1-3", "type": "opponent", "text": "이 번호 저장하고 기존 번호는 지워줘.", "delayMs": 1000 },
+              { "id": "p1-4", "type": "opponent", "text": "지금 바빠? 부탁 하나만.", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "영상/통화로 확인", "action": "DEFENSE" },
+              { "text": "무시/차단", "action": "DEFENSE" },
+              { "text": "(위험) 무슨 일인데?", "action": "FAIL_TO_P2" }
+            ]
+          },
+          "phase2": {
+            "messages": [
+              { "id": "p2-1", "type": "opponent", "text": "결제가 안 돼서 [[AMOUNT]]만 먼저 부탁해.", "delayMs": 1000 },
+              { "id": "p2-2", "type": "opponent", "text": "매장 계좌라서 여기로 보내면 돼.", "delayMs": 1000, "isRedFlag": true, "redFlagText": "가족 문제인데 ‘타인/매장 계좌’ 이체 요구는 매우 위험합니다." },
+              { "id": "p2-3", "type": "fake_button", "text": "송금 진행(훈련 버튼)", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "내가 직접 확인하고 처리할게", "action": "DEFENSE" },
+              { "text": "(파국) 진행한다", "action": "CRITICAL_FAIL" }
+            ]
+          }
+        },
+        {
+          "id": "S1-C",
+          "title": "엄마 - 공동구매",
+          "preview": "딸~ 엄마 부탁 하나만 들어줘~",
+          "cut3Type": "TRANSFER",
+          "phase1": {
+            "messages": [
+              { "id": "p1-1", "type": "opponent", "text": "딸~ 엄마 부탁 하나만 들어줘~", "delayMs": 0 },
+              { "id": "p1-2", "type": "opponent", "text": "모임 공동구매 결제가 막혔어ㅠㅠ", "delayMs": 1000 },
+              { "id": "p1-3", "type": "opponent", "text": "지금 바로 가능해?", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "엄마에게 직접 전화", "action": "DEFENSE" },
+              { "text": "차단", "action": "DEFENSE" },
+              { "text": "(위험) 뭔데?", "action": "FAIL_TO_P2" }
+            ]
+          },
+          "phase2": {
+            "messages": [
+              { "id": "p2-1", "type": "opponent", "text": "10분 뒤 마감이래… [[AMOUNT]]만 먼저.", "delayMs": 1000, "isRedFlag": true, "redFlagText": "시간 압박은 판단을 흐리게 하는 전형적 수법입니다." },
+              { "id": "p2-2", "type": "opponent", "text": "여기로 보내면 바로 처리돼.", "delayMs": 1000 },
+              { "id": "p2-3", "type": "fake_button", "text": "송금 진행(훈련 버튼)", "delayMs": 1000 }
+            ],
+            "choices": [
+              { "text": "시간 압박이면 더더욱 끊고 확인", "action": "DEFENSE" },
+              { "text": "(파국) 진행한다", "action": "CRITICAL_FAIL" }
+            ]
+          }
+        }
+      ]
+    },
+
+    { "id":"S2","name":"투자 리딩방","platformTheme":"telegram","icon":"📉","rooms":[
+      { "id":"S2-A","title":"가짜 트레이더","preview":"오늘 상위 1% 픽 나갑니다.","cut3Type":"LOGIN",
+        "phase1":{"messages":[
+          {"id":"p1-1","type":"opponent","text":"VIP 회원님들, 어제 전원 익절 축하드립니다.","delayMs":0},
+          {"id":"p1-2","type":"opponent","text":"오늘 상위 1% 프라이빗 픽 나갑니다.","delayMs":1000,"isRedFlag":true,"redFlagText":"과장/권위형 문구로 유혹합니다."},
+          {"id":"p1-3","type":"opponent","text":"참여 원하시면 개인톡 주세요.","delayMs":1000}
+        ],"choices":[
+          {"text":"방 나가기","action":"DEFENSE"},
+          {"text":"신고/차단","action":"DEFENSE"},
+          {"text":"(위험) 참여하고 싶어요","action":"FAIL_TO_P2"}
+        ]},
+        "phase2":{"messages":[
+          {"id":"p2-1","type":"opponent","text":"보안상 전용 페이지에서만 진행합니다.","delayMs":1000},
+          {"id":"p2-2","type":"opponent","text":"링크로 로그인 후 진행하세요: https://example.invalid/vip","delayMs":1000,"isRedFlag":true,"redFlagText":"출처 불명 링크/로그인 요구는 위험합니다."},
+          {"id":"p2-3","type":"fake_button","text":"전용 페이지 이동(훈련 버튼)","delayMs":1000}
+        ],"choices":[
+          {"text":"제도권 외엔 이용 안 함","action":"DEFENSE"},
+          {"text":"(파국) 링크로 이동","action":"CRITICAL_FAIL"}
+        ]}
+      },
+      { "id":"S2-B","title":"내부자 사칭","preview":"상장 확정 코인 프리세일","cut3Type":"LOGIN",
+        "phase1":{"messages":[
+          {"id":"p1-1","type":"opponent","text":"상장 확정 코인인데 너만 알려줄게.","delayMs":0},
+          {"id":"p1-2","type":"opponent","text":"절대 소문내면 안 돼.","delayMs":1000},
+          {"id":"p1-3","type":"opponent","text":"지금 들어가면 10배야.","delayMs":1000,"isRedFlag":true,"redFlagText":"원금/고수익 보장은 사기 신호입니다."}
+        ],"choices":[
+          {"text":"계정 도용 의심","action":"DEFENSE"},
+          {"text":"차단","action":"DEFENSE"},
+          {"text":"(위험) 링크 줘","action":"FAIL_TO_P2"}
+        ]},
+        "phase2":{"messages":[
+          {"id":"p2-1","type":"opponent","text":"여기야: https://example.invalid/private","delayMs":1000,"isRedFlag":true,"redFlagText":"프라이빗 링크 가입 유도는 스캠 위험이 큽니다."},
+          {"id":"p2-2","type":"fake_button","text":"프라이빗 링크 열기(훈련 버튼)","delayMs":1000},
+          {"id":"p2-3","type":"opponent","text":"지금 바로 해야 해.","delayMs":1000}
+        ],"choices":[
+          {"text":"스캠 냄새, 안 함","action":"DEFENSE"},
+          {"text":"(파국) 진행","action":"CRITICAL_FAIL"}
+        ]}
+      },
+      { "id":"S2-C","title":"바람잡이 단톡","preview":"수익 인증샷이 쏟아짐","cut3Type":"LOGIN",
+        "phase1":{"messages":[
+          {"id":"p1-1","type":"opponent","text":"[회원A] 출금 인증합니다.","delayMs":0,"isRedFlag":true,"redFlagText":"단톡 수익 인증은 조작 가능성이 큽니다."},
+          {"id":"p1-2","type":"opponent","text":"[회원B] 저도 대출 받아 갑니다.","delayMs":1000},
+          {"id":"p1-3","type":"opponent","text":"[방장] 신규 링크 열어둘게요.","delayMs":1000}
+        ],"choices":[
+          {"text":"나가기","action":"DEFENSE"},
+          {"text":"신고","action":"DEFENSE"},
+          {"text":"(위험) 가입","action":"FAIL_TO_P2"}
+        ]},
+        "phase2":{"messages":[
+          {"id":"p2-1","type":"opponent","text":"손실 0% 보장입니다.","delayMs":1000,"isRedFlag":true,"redFlagText":"손실 0%는 현실적으로 불가능합니다."},
+          {"id":"p2-2","type":"fake_button","text":"가입 진행(훈련 버튼)","delayMs":1000},
+          {"id":"p2-3","type":"opponent","text":"지금 입금하면 시작.","delayMs":1000}
+        ],"choices":[
+          {"text":"말이 안 됨","action":"DEFENSE"},
+          {"text":"(파국) 진행","action":"CRITICAL_FAIL"}
+        ]}
+      }
+    ]},
+
+    { "id":"S3","name":"지인 급전","platformTheme":"kakao","icon":"💳","rooms":[
+      { "id":"S3-A","title":"지갑 분실","preview":"지갑 잃어버렸어.. 돈 좀","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"야 지갑 잃어버렸어 ㅠㅠ","delayMs":0},{"id":"p1-2","type":"opponent","text":"진짜 미안한데 돈 좀 빌려줘","delayMs":1000},{"id":"p1-3","type":"opponent","text":"낼 갚을게","delayMs":1000}],
+        "choices":[{"text":"통화부터","action":"DEFENSE"},{"text":"차단","action":"DEFENSE"},{"text":"(위험) 얼마?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"상품권 PIN 사진만 보내줘","delayMs":1000,"isRedFlag":true,"redFlagText":"상품권 핀번호 요구는 대표적 피싱 수법입니다."},{"id":"p2-2","type":"fake_button","text":"PIN 전송(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"진짜 급해","delayMs":1000}],
+        "choices":[{"text":"말이 안 됨","action":"DEFENSE"},{"text":"(파국) 전송","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S3-B","title":"교통사고","preview":"현장 합의금 급해","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"나 사고 났는데 합의금이 급해","delayMs":0},{"id":"p1-2","type":"opponent","text":"보험 처리가 안 돼서…","delayMs":1000},{"id":"p1-3","type":"opponent","text":"200만 원만 빌려줘","delayMs":1000}],
+        "choices":[{"text":"전화 확인","action":"DEFENSE"},{"text":"차단","action":"DEFENSE"},{"text":"(위험) 괜찮아?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"상대방 계좌로 보내줘","delayMs":1000,"isRedFlag":true,"redFlagText":"제3자 계좌 송금 유도는 위험 신호입니다."},{"id":"p2-2","type":"fake_button","text":"송금(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"10분 내로","delayMs":1000}],
+        "choices":[{"text":"제3자 계좌 불가","action":"DEFENSE"},{"text":"(파국) 송금","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S3-C","title":"문화상품권","preview":"편의점에서 결제가 안 돼","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"지금 편의점 갈 수 있어?","delayMs":0},{"id":"p1-2","type":"opponent","text":"결제가 안 돼서 상품권 좀","delayMs":1000},{"id":"p1-3","type":"opponent","text":"급해","delayMs":1000}],
+        "choices":[{"text":"사내 메신저로 확인","action":"DEFENSE"},{"text":"읽씹","action":"DEFENSE"},{"text":"(위험) 얼마?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"스크래치 PIN 사진 보내줘","delayMs":1000,"isRedFlag":true,"redFlagText":"PIN만 요구하는 건 추적 회피 목적입니다."},{"id":"p2-2","type":"fake_button","text":"PIN 전송(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"빨리","delayMs":1000}],
+        "choices":[{"text":"피싱임","action":"DEFENSE"},{"text":"(파국) 전송","action":"CRITICAL_FAIL"}]}
+      }
+    ]},
+
+    { "id":"S4","name":"중고거래 사칭","platformTheme":"kakao","icon":"🛍️","rooms":[
+      { "id":"S4-A","title":"채팅 오류 핑계","preview":"앱 밖 카톡 유도","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"당근 채팅이 안 떠서 카톡 드려요","delayMs":0,"isRedFlag":true,"redFlagText":"앱 밖으로 대화 유도는 사기 위험이 큽니다."},{"id":"p1-2","type":"opponent","text":"직거래 가능하신가요?","delayMs":1000},{"id":"p1-3","type":"opponent","text":"답 주세요","delayMs":1000}],
+        "choices":[{"text":"앱 채팅에서만","action":"DEFENSE"},{"text":"차단","action":"DEFENSE"},{"text":"(위험) 어디서?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"외부 안전결제 링크로 진행해요","delayMs":1000,"isRedFlag":true,"redFlagText":"외부 안전결제 링크는 대부분 사기입니다."},{"id":"p2-2","type":"opponent","text":"https://example.invalid/pay","delayMs":1000},{"id":"p2-3","type":"fake_button","text":"안전결제 이동(훈련 버튼)","delayMs":1000}],
+        "choices":[{"text":"외부 링크는 안 눌러요","action":"DEFENSE"},{"text":"(파국) 이동","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S4-B","title":"전용 링크 생성","preview":"앱 오류라 웹으로","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"안전결제로만 진행합니다","delayMs":0},{"id":"p1-2","type":"opponent","text":"제가 링크 만들게요","delayMs":1000},{"id":"p1-3","type":"opponent","text":"확인 부탁","delayMs":1000}],
+        "choices":[{"text":"플랫폼에서만","action":"DEFENSE"},{"text":"직거래만","action":"DEFENSE"},{"text":"(위험) 링크 주세요","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"앱 오류라 웹으로 열어주세요","delayMs":1000,"isRedFlag":true,"redFlagText":"앱에서 못 하게 하고 외부 브라우저로 유도합니다."},{"id":"p2-2","type":"fake_button","text":"결제 페이지 이동(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"지금만 가능","delayMs":1000}],
+        "choices":[{"text":"이상함","action":"DEFENSE"},{"text":"(파국) 이동","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S4-C","name":"중고거래 사칭","title":"가족 대리","preview":"아내가 대신 나갈게요","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"직거래는 아내가 나갈게요","delayMs":0},{"id":"p1-2","type":"opponent","text":"아내 번호로 톡 주세요","delayMs":1000,"isRedFlag":true,"redFlagText":"연락처 분산은 사기에서 자주 쓰입니다."},{"id":"p1-3","type":"opponent","text":"빠르게 진행","delayMs":1000}],
+        "choices":[{"text":"본인 아니면 거래 안 함","action":"DEFENSE"},{"text":"거래 파기","action":"DEFENSE"},{"text":"(위험) 연락할게요","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"갑자기 택배로… 안전결제 링크","delayMs":1000,"isRedFlag":true,"redFlagText":"갑작스런 핑계+링크 결합은 전형 패턴입니다."},{"id":"p2-2","type":"fake_button","text":"결제 진행(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"지금 해줘","delayMs":1000}],
+        "choices":[{"text":"카톡 링크는 안 눌러요","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      }
+    ]},
+
+    { "id":"S5","name":"로맨스 스캠","platformTheme":"insta","icon":"💖","rooms":[
+      { "id":"S5-A","title":"통관비","preview":"선물 보냈는데 세관에…","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"자기야 선물 보냈어","delayMs":0,"isRedFlag":true,"redFlagText":"만난 적 없는데 고가 선물을 언급하며 신뢰를 유도합니다."},{"id":"p1-2","type":"opponent","text":"다음 달 한국 가","delayMs":1000},{"id":"p1-3","type":"opponent","text":"확인해줘","delayMs":1000}],
+        "choices":[{"text":"차단","action":"DEFENSE"},{"text":"안 받음","action":"DEFENSE"},{"text":"(위험) 고마워","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"세관 통관비 [[AMOUNT]]만 먼저","delayMs":1000,"isRedFlag":true,"redFlagText":"통관비를 개인 계좌로 요구하는 건 전형 사기입니다."},{"id":"p2-2","type":"fake_button","text":"송금 진행(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"제발","delayMs":1000}],
+        "choices":[{"text":"공식 채널 확인","action":"DEFENSE"},{"text":"(파국) 송금","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S5-B","title":"호텔 결제","preview":"카드 동결이라 [[AMOUNT]]만","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"홍콩 출장 중인데…","delayMs":0},{"id":"p1-2","type":"opponent","text":"당황스러운 일이 있어","delayMs":1000},{"id":"p1-3","type":"opponent","text":"부탁 가능?","delayMs":1000}],
+        "choices":[{"text":"차단","action":"DEFENSE"},{"text":"무시","action":"DEFENSE"},{"text":"(위험) 무슨 일?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"카드 동결… [[AMOUNT]]만","delayMs":1000,"isRedFlag":true,"redFlagText":"동정심 유발 후 금전 요구는 로맨스 스캠 핵심입니다."},{"id":"p2-2","type":"fake_button","text":"송금(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"내일 갚아","delayMs":1000}],
+        "choices":[{"text":"신종 사기 차단","action":"DEFENSE"},{"text":"(파국) 송금","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S5-C","title":"가짜 코인 유도","preview":"앱스토어 없는 설치 유도","cut3Type":"INSTALL",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"오빠 재테크 관심?","delayMs":0},{"id":"p1-2","type":"opponent","text":"확실한 정보 있어","delayMs":1000},{"id":"p1-3","type":"opponent","text":"코인으로 벌었어","delayMs":1000}],
+        "choices":[{"text":"차단","action":"DEFENSE"},{"text":"투자 안 함","action":"DEFENSE"},{"text":"(위험) 어떤 코인?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"출처 불명 앱 설치 필요","delayMs":1000,"isRedFlag":true,"redFlagText":"앱스토어 밖 설치 유도는 악성코드 위험이 큽니다."},{"id":"p2-2","type":"fake_button","text":"설치 진행(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"지금만","delayMs":1000}],
+        "choices":[{"text":"설치는 절대 안 함","action":"DEFENSE"},{"text":"(파국) 설치","action":"CRITICAL_FAIL"}]}
+      }
+    ]},
+
+    { "id":"S6","name":"단톡방 공지 사칭","platformTheme":"kakao","icon":"👥","rooms":[
+      { "id":"S6-A","title":"약도 위장","preview":"모임 약도 확인 링크","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"모임 공지: 약도 올렸어","delayMs":0},{"id":"p1-2","type":"opponent","text":"링크 확인해줘","delayMs":1000},{"id":"p1-3","type":"opponent","text":"https://example.invalid/map","delayMs":1000}],
+        "choices":[{"text":"해킹 의심","action":"DEFENSE"},{"text":"무시","action":"DEFENSE"},{"text":"(위험) 확인","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"약도 확인에 로그인 요구","delayMs":1000,"isRedFlag":true,"redFlagText":"단순 약도 확인인데 로그인 요구는 비정상입니다."},{"id":"p2-2","type":"fake_button","text":"로그인 진행(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"아이디/비번 입력","delayMs":1000}],
+        "choices":[{"text":"창 닫기","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S6-B","title":"CCTV 위장","preview":"충격 영상 링크","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"우리 동네 사건 영상","delayMs":0},{"id":"p1-2","type":"opponent","text":"원본 CCTV래","delayMs":1000},{"id":"p1-3","type":"opponent","text":"링크 공유","delayMs":1000}],
+        "choices":[{"text":"안 누름","action":"DEFENSE"},{"text":"해킹 신고","action":"DEFENSE"},{"text":"(위험) 어디?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"연령 제한: 계정 인증 필요","delayMs":1000,"isRedFlag":true,"redFlagText":"호기심 자극 후 계정 탈취를 시도합니다."},{"id":"p2-2","type":"fake_button","text":"계정 인증(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"이메일/비번 입력","delayMs":1000}],
+        "choices":[{"text":"피싱","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S6-C","title":"청첩장 위장","preview":"고화질 사진 보려면 설치","cut3Type":"INSTALL",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"모바일 청첩장 확인해줘","delayMs":0},{"id":"p1-2","type":"opponent","text":"사진/약도 링크","delayMs":1000},{"id":"p1-3","type":"opponent","text":"https://example.invalid/wed","delayMs":1000}],
+        "choices":[{"text":"번호 이상","action":"DEFENSE"},{"text":"삭제","action":"DEFENSE"},{"text":"(위험) 축하해요","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"사진 보려면 앱 설치 필요","delayMs":1000,"isRedFlag":true,"redFlagText":"사진 보는데 앱 설치를 요구하는 건 위험합니다."},{"id":"p2-2","type":"fake_button","text":"APK 설치(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"설치 진행?","delayMs":1000}],
+        "choices":[{"text":"설치 취소","action":"DEFENSE"},{"text":"(파국) 설치","action":"CRITICAL_FAIL"}]}
+      }
+    ]},
+
+    { "id":"S7","name":"직장/거래처 사칭","platformTheme":"line","icon":"💼","rooms":[
+      { "id":"S7-A","title":"대표 지시","preview":"번호 바뀜, 지금 지시할게","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"나 대표인데 번호 임시로 바뀜","delayMs":0,"isRedFlag":true,"redFlagText":"사내 채널 회피+번호 변경은 위험 신호입니다."},{"id":"p1-2","type":"opponent","text":"회의 중이라 메신저로","delayMs":1000},{"id":"p1-3","type":"opponent","text":"지금 바로 답해","delayMs":1000}],
+        "choices":[{"text":"사내 메신저로 요청","action":"DEFENSE"},{"text":"내선 통화","action":"DEFENSE"},{"text":"(위험) 말씀하세요","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"개인 돈으로 [[AMOUNT]] 먼저 처리","delayMs":1000,"isRedFlag":true,"redFlagText":"상사가 개인 송금을 요구하는 건 매우 위험합니다."},{"id":"p2-2","type":"fake_button","text":"송금(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"영수증 남겨","delayMs":1000}],
+        "choices":[{"text":"규정상 불가","action":"DEFENSE"},{"text":"(파국) 송금","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S7-B","title":"OTP 오류","preview":"송금 급해, 네가 먼저","cut3Type":"TRANSFER",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"OTP가 에러야","delayMs":0},{"id":"p1-2","type":"opponent","text":"4시까지 안 되면 계약 파기","delayMs":1000},{"id":"p1-3","type":"opponent","text":"네가 먼저 가능?","delayMs":1000}],
+        "choices":[{"text":"회계팀 확인","action":"DEFENSE"},{"text":"내선 통화","action":"DEFENSE"},{"text":"(위험) 얼마?","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"[[AMOUNT]] 먼저 이쪽으로","delayMs":1000},{"id":"p2-2","type":"opponent","text":"예금주가 개인임","delayMs":1000,"isRedFlag":true,"redFlagText":"업무 결제인데 개인 예금주면 의심해야 합니다."},{"id":"p2-3","type":"fake_button","text":"송금(훈련 버튼)","delayMs":1000}],
+        "choices":[{"text":"이상함","action":"DEFENSE"},{"text":"(파국) 송금","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S7-C","title":"가짜 세금계산서","preview":"링크로 금액 확인 요청","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"세금계산서 링크 확인 부탁","delayMs":0},{"id":"p1-2","type":"opponent","text":"https://example.invalid/tax","delayMs":1000},{"id":"p1-3","type":"opponent","text":"금액만 확인","delayMs":1000}],
+        "choices":[{"text":"메일로만 확인","action":"DEFENSE"},{"text":"거래처 전화","action":"DEFENSE"},{"text":"(위험) 확인","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"외부 링크에서 인증서 비번 요구","delayMs":1000,"isRedFlag":true,"redFlagText":"외부 링크에서 인증서 비밀번호 요구는 매우 위험합니다."},{"id":"p2-2","type":"fake_button","text":"비밀번호 입력(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"지금 입력","delayMs":1000}],
+        "choices":[{"text":"창 닫기","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      }
+    ]},
+
+    { "id":"S8","name":"이벤트/당첨 사칭","platformTheme":"kakao","icon":"🎁","rooms":[
+      { "id":"S8-A","title":"선물하기 위조","preview":"오늘 자정까지 확인","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"[선물] 깜짝 선물이 도착했습니다!","delayMs":0},{"id":"p1-2","type":"opponent","text":"유효기간 오늘 자정까지","delayMs":1000,"isRedFlag":true,"redFlagText":"시간 제한으로 조급하게 만듭니다."},{"id":"p1-3","type":"opponent","text":"https://example.invalid/gift","delayMs":1000}],
+        "choices":[{"text":"선물함에서 확인","action":"DEFENSE"},{"text":"차단","action":"DEFENSE"},{"text":"(위험) 눌러볼까","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"개인정보 입력 필요","delayMs":1000,"isRedFlag":true,"redFlagText":"경품에 과도한 개인정보 요구는 사기 신호입니다."},{"id":"p2-2","type":"fake_button","text":"개인정보 입력(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"이름/생년월일/번호","delayMs":1000}],
+        "choices":[{"text":"닫기","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S8-B","title":"로또 번호 무료","preview":"VIP 조합 무료 제공","cut3Type":"INSTALL",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"무료 당첨! VIP 번호 제공","delayMs":0},{"id":"p1-2","type":"opponent","text":"링크로 받아가세요","delayMs":1000},{"id":"p1-3","type":"opponent","text":"https://example.invalid/lotto","delayMs":1000}],
+        "choices":[{"text":"스팸 신고","action":"DEFENSE"},{"text":"공짜는 없다","action":"DEFENSE"},{"text":"(위험) 눌러봄","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"번호 입력 + 앱 설치 필요","delayMs":1000,"isRedFlag":true,"redFlagText":"번호 수집+앱 설치 유도는 악성코드 위험이 있습니다."},{"id":"p2-2","type":"fake_button","text":"앱 설치(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"설치 완료 필요","delayMs":1000}],
+        "choices":[{"text":"닫기","action":"DEFENSE"},{"text":"(파국) 설치","action":"CRITICAL_FAIL"}]}
+      },
+      { "id":"S8-C","title":"기관 설문 위장","preview":"1분 설문, 5만 원 100%","cut3Type":"LOGIN",
+        "phase1":{"messages":[{"id":"p1-1","type":"opponent","text":"[기관 설문] 1분 참여 시 상품권 지급","delayMs":0},{"id":"p1-2","type":"opponent","text":"예산 소진 전 참여","delayMs":1000},{"id":"p1-3","type":"opponent","text":"https://example.invalid/survey","delayMs":1000}],
+        "choices":[{"text":"사칭 신고","action":"DEFENSE"},{"text":"100% 사기","action":"DEFENSE"},{"text":"(위험) 참여","action":"FAIL_TO_P2"}]},
+        "phase2":{"messages":[{"id":"p2-1","type":"opponent","text":"지급 위해 민감정보 인증 요구","delayMs":1000,"isRedFlag":true,"redFlagText":"경품 지급에 계좌 비밀번호 등 민감정보 요구는 사기입니다."},{"id":"p2-2","type":"fake_button","text":"인증 진행(훈련 버튼)","delayMs":1000},{"id":"p2-3","type":"opponent","text":"민감정보 입력","delayMs":1000}],
+        "choices":[{"text":"닫기","action":"DEFENSE"},{"text":"(파국) 진행","action":"CRITICAL_FAIL"}]}
+      }
+    ]}
+  ]
+}

@@ -1,0 +1,134 @@
+﻿<!-- messenger.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>메신저피싱 체험</title>
+
+  <!-- ✅ 메신저 전용 CSS만 로드 (보이스 styles.css와 분리) -->
+  <link rel="stylesheet" href="css/messenger.css" />
+</head>
+<body>
+  <div class="app">
+
+    <div class="back-row">
+      <button class="back-btn" id="backHome">← 메인</button>
+    </div>
+
+    <!-- 상단(voice.html과 동일한 구조) -->
+    <div class="subhead" aria-label="메신저피싱 체험 헤더">
+      <!-- 아이콘 파일은 네가 이미지 넣으면 됨. 없으면 대체 텍스트로 표시됨 -->
+      <img class="subhead-icon" src="images/tile_messenger_phishing.png" alt="메신저피싱"
+           onerror="this.style.display='none'; document.getElementById('msIconFallback').style.display='flex';" />
+      <div class="subhead-icon fallback" id="msIconFallback" style="display:none;">💬</div>
+
+      <div class="subhead-text">
+        <h1 class="subhead-title">메신저피싱 체험</h1>
+        <p class="subhead-sub">테마(8개) → 방(A/B/C) → 대화(1초 압박) 순으로 진행됩니다.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+
+      <!-- ========== VIEW: THEME LIST ========== -->
+      <div id="viewThemeList">
+        <h2 class="step-title">1) 테마 선택</h2>
+
+        <ul class="scenario-list" id="themeList" aria-label="테마 선택 목록">
+          <!-- JS로 렌더링 -->
+        </ul>
+
+        <div class="hr"></div>
+
+        <h2 class="step-title">2) 결과 반영</h2>
+        <p class="notice">
+          각 방(S?-A/B/C) 완료 시 점수가 저장되고, 전체 평균이 메인 위험도(riskScore)에 자동 반영됩니다.
+        </p>
+
+        <div class="kpi">
+          <div class="item">
+            <div class="label">현재 통합 위험도</div>
+            <div class="value" id="riskScoreNow">-</div>
+          </div>
+          <div class="item">
+            <div class="label">다음 동작</div>
+            <div class="value">메인으로 돌아가 확인</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== VIEW: ROOM LIST ========== -->
+      <div id="viewRoomList" hidden>
+        <h2 class="step-title">1) 방 선택</h2>
+
+        <p class="notice" id="roomHint">
+          테마 안에는 A/B/C 3개 방이 있습니다. (짧게 누르면 입장 / 1초 롱프레스는 차단)
+        </p>
+
+        <ul class="scenario-list" id="roomList" aria-label="방 선택 목록">
+          <!-- JS로 렌더링 -->
+        </ul>
+
+        <div class="hr"></div>
+
+        <div class="kpi">
+          <div class="item">
+            <div class="label">테마</div>
+            <div class="value" id="roomThemeName">-</div>
+          </div>
+          <div class="item">
+            <div class="label">현재 통합 위험도</div>
+            <div class="value" id="roomRiskScore">-</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <button class="primary" id="backToThemes" style="width:100%;">← 테마 목록으로</button>
+      </div>
+
+      <!-- ========== VIEW: CHAT ========== -->
+      <div id="viewChat" hidden>
+        <h2 class="step-title" id="chatTitle">대화 진행</h2>
+
+        <div class="chat-shell" id="chatShell" data-theme="kakao" aria-label="메신저 대화 화면">
+          <div class="chat-head">
+            <div class="chat-head-left">
+              <button class="mini-btn" id="chatBack">←</button>
+              <div class="chat-peer">
+                <div class="chat-peer-name" id="peerName">상대</div>
+                <div class="chat-peer-sub" id="peerSub">대화 중</div>
+              </div>
+            </div>
+            <div class="chat-head-right">
+              <span class="chip" id="phaseChip">PHASE 1</span>
+            </div>
+          </div>
+
+          <div class="chat-banner" id="chatBanner" hidden>
+            ⚠️ 금전/링크/앱 설치 요구가 나오면 ‘끊고 확인’이 원칙입니다.
+          </div>
+
+          <div class="chat-body" id="chatBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Choice Sheet (PHASE1/PHASE2 선택지) -->
+  <div class="choice-sheet" id="choiceSheet" aria-hidden="true">
+    <div class="choice-card">
+      <div class="choice-title" id="choiceTitle">선택</div>
+      <div class="choice-btns" id="choiceBtns"></div>
+    </div>
+  </div>
+
+  <!-- ✅ Overlay (롱프레스 메뉴 / CUT3 / RESULT / REVIEW) -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="overlay-card" id="overlayCard"></div>
+  </div>
+
+  <script src="js/messenger.js"></script>
+</body>
+</html>
