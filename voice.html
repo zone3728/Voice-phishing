@@ -1,0 +1,234 @@
+﻿<!-- voice.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>보이스피싱 체험</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <div class="back-row">
+      <button class="back-btn" id="backHome">← 메인</button>
+    </div>
+
+    <div class="subhead" aria-label="보이스피싱 체험 헤더">
+      <img class="subhead-icon" src="images/tile_voice_phishing.png" alt="보이스피싱" />
+      <div class="subhead-text">
+        <h1 class="subhead-title">보이스피싱 체험</h1>
+        <p class="subhead-sub">상황을 선택하면 점수가 저장되고 메인 위험도가 자동 반영됩니다.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+
+      <h2 class="step-title">1) 상황 선택</h2>
+
+      <ul class="scenario-list" id="scenarioRow" aria-label="시나리오 선택 목록">
+
+        <li>
+          <button type="button" class="scenario-item active" data-score="95" aria-pressed="true">
+            <span class="scenario-left">
+              <span class="scenario-num">01</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2 20 6v7c0 5-4 8-8 9-4-1-8-4-8-9V6l8-4Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">수사기관 사칭: “대포통장 연루” 협박</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+        <li>
+          <button type="button" class="scenario-item" data-score="90" aria-pressed="false">
+            <span class="scenario-left">
+              <span class="scenario-num">02</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12a4 4 0 1 0-0.01 0Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M4 22c1-4 5-6 8-6s7 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">자녀 납치 빙자: 공포 유발·현금 갈취</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+        <li>
+          <button type="button" class="scenario-item" data-score="85" aria-pressed="false">
+            <span class="scenario-left">
+              <span class="scenario-num">03</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M3 10 12 4l9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M5 10v10h14V10" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 14v6M12 14v6M16 14v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">은행 직원 사칭: 저금리 대환대출 미끼</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+        <li>
+          <button type="button" class="scenario-item" data-score="80" aria-pressed="false">
+            <span class="scenario-left">
+              <span class="scenario-num">04</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l3 3v15H7V3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M14 3v4h4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M9 11h6M9 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">법원 등기 반송 사칭: 가짜 사이트·앱 설치 유도</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+        <li>
+          <button type="button" class="scenario-item" data-score="75" aria-pressed="false">
+            <span class="scenario-left">
+              <span class="scenario-num">05</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v12H4V7Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M4 7 12 3l8 4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M12 3v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">카드 배송 콜백: “직접 전화” 유도 후 사칭 연결</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+        <li>
+          <button type="button" class="scenario-item" data-score="70" aria-pressed="false">
+            <span class="scenario-left">
+              <span class="scenario-num">06</span>
+              <span class="scenario-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M7 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M14 9h6v6h-6l-3 2V7l3 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="scenario-text">
+                <span class="scenario-title">국세청 ARS 사칭: 체납·압류 협박형 자동음성</span>
+              </span>
+            </span>
+            <span class="scenario-right" aria-hidden="true">›</span>
+          </button>
+        </li>
+
+      </ul>
+
+      <div class="hr"></div>
+
+      <h2 class="step-title">2) 결과 반영</h2>
+      <p class="notice">
+        선택한 시나리오와 진행 결과에 따라 점수가 저장되고,
+        메인 화면의 “나의 전화금융사기 위험도”가 자동 갱신됩니다.
+      </p>
+
+      <div class="kpi">
+        <div class="item">
+          <div class="label">저장될 점수</div>
+          <div class="value" id="pickScore">95</div>
+        </div>
+        <div class="item">
+          <div class="label">다음 동작</div>
+          <div class="value">메인으로 돌아가 확인</div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <button class="primary" id="applyScore" style="width:100%;">
+        이 점수로 메인 위험도 갱신하기
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ✅ 전화 화면 오버레이 -->
+  <div class="call-overlay" id="callOverlay" aria-hidden="true">
+    <div class="call-screen incoming" id="callScreen" role="dialog" aria-label="전화 화면">
+      <button class="call-close" id="callClose" aria-label="닫기">×</button>
+
+      <div class="call-top-area">
+        <div class="call-top-title-row">
+          <div class="call-top-title" id="callTopTitle">수신전화</div>
+          <div class="call-timer" id="callTimer" hidden>00:00</div>
+          <div class="call-progress" id="callProgress" hidden>1/3</div>
+        </div>
+
+        <div class="call-number" id="callerNumber">010-0000-0000</div>
+        <div class="call-status" id="callStatus">전화 오는 중…</div>
+      </div>
+
+      <!-- 수신/거절 버튼 UI는 숨김(표시 X), 터치는 하단 영역으로 처리 -->
+      <div class="incoming-btns" id="incomingBtns">
+        <button class="round-btn answer" id="btnAnswer" aria-label="수신"></button>
+        <button class="round-btn decline" id="btnDecline" aria-label="거절"></button>
+      </div>
+
+      <!-- 통화중(재생) -->
+      <div class="incall-area" id="inCallArea" hidden>
+        <audio id="callAudio" preload="auto"></audio>
+      </div>
+
+      <!-- CUT마다 뜨는 선택지(중앙 표시) -->
+      <div class="decision-sheet" id="decisionPanel" hidden>
+        <div class="sheet-title" id="quizTitle">Q1</div>
+        <div id="quizOptions"></div>
+      </div>
+
+      <!-- 결과 -->
+      <div class="result-sheet" id="resultPanel" hidden>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-desc" id="resultDesc"></div>
+
+        <div class="result-actions" id="resultActions">
+          <button class="result-btn" id="btnPeek">수법 계속 엿보기</button>
+          <button class="result-btn" id="btnOther">즉시 종료하고 다른 시나리오 보기</button>
+        </div>
+
+        <div class="result-actions" id="resultFailActions" hidden>
+          <button class="result-btn" id="btnRetry">다시 선택</button>
+          <button class="result-btn" id="btnOther2">다른 시나리오 보기</button>
+        </div>
+      </div>
+
+      <!-- 수법 핵심 포인트 -->
+      <div class="peek-sheet" id="peekPanel" hidden>
+        <div class="sheet-title">이 수법의 핵심 포인트</div>
+        <ul class="peek-list" id="peekBody"></ul>
+        <button class="result-btn" id="btnPeekClose">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/voice.js"></script>
+</body>
+</html>

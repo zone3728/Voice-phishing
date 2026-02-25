@@ -1,47 +1,102 @@
-<!DOCTYPE html>
+﻿<!-- index.html -->
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사이트 준비 중</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f6f8;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        .message-box {
-            text-align: center;
-            background-color: #ffffff;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 28px;
-        }
-        p {
-            color: #7f8c8d;
-            font-size: 16px;
-            margin: 0;
-        }
-        .icon {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>전화금융사기 체험하기</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div class="message-box">
-        <div class="icon">🚧</div>
-        <h1>현재 구현 중입니다.</h1>
-        <p>더 멋진 모습으로 찾아뵙겠습니다. 조금만 기다려 주세요!</p>
-    </div>
+  <div class="app">
+
+    <header class="header">
+      <img class="header-title" src="images/main_title_transparent.png" alt="전화금융사기 체험하기" />
+    </header>
+
+    <section class="tiles" aria-label="체험 선택">
+      <button class="tile" id="go-voice" aria-label="보이스피싱">
+        <img src="images/tile_voice_phishing.png" alt="보이스피싱" />
+      </button>
+      <button class="tile" id="go-smishing" aria-label="스미싱">
+        <img src="images/tile_smishing.png" alt="스미싱" />
+      </button>
+      <button class="tile" id="go-messenger" aria-label="메신저피싱">
+        <img src="images/tile_messenger_phishing.png" alt="메신저피싱" />
+      </button>
+    </section>
+
+    <section class="actions" aria-label="빠른 메뉴">
+      <button class="img-btn" id="go-share" aria-label="공유하기">
+        <img src="images/btn_share_transparent.png" alt="공유하기" />
+      </button>
+      <button class="img-btn" id="go-center" aria-label="예방센터 돌아가기">
+        <img src="images/btn_center_transparent.png" alt="예방센터 돌아가기" />
+      </button>
+      <button class="img-btn" id="go-help" aria-label="도움말">
+        <img src="images/btn_help_transparent.png" alt="도움말" />
+      </button>
+    </section>
+
+    <!-- 위험도 카드(지금 네가 완성한 버전 유지) -->
+    <section class="risk" aria-label="나의 전화금융사기 위험도">
+      <div class="risk-card">
+        <div class="risk-card-title">
+          <img class="risk-title" src="images/mydangers.png" alt="나의 전화금융사기 위험도" />
+        </div>
+
+        <div class="risk-left">
+          <div class="gauge-box">
+            <div class="gauge-stage">
+              <img class="gauge-bg" src="images/gauge_transparent_bgonly_v2.png" alt="게이지" />
+              <img class="gauge-needle" id="needle" src="images/needle_transparent.png" alt="" />
+            </div>
+
+            <div class="left-status">
+              <span class="left-status-label">현재상태</span>
+              <span class="left-status-value" id="statusText">보통</span>
+            </div>
+
+            <p class="gauge-note">※ 이 게이지는 체험 선택/결과(점수)에 따라 자동 표시됩니다.</p>
+          </div>
+        </div>
+
+        <div class="risk-right">
+          <div class="right-scroll">
+            <div class="score-top">
+              <img class="badge" id="badge" src="images/badge_normal.png" alt="상태 배지" />
+              <div class="score-only">
+                <div class="score-label">점수</div>
+                <div class="score-value" id="scoreText">60</div>
+              </div>
+            </div>
+
+            <div class="desc">
+              <p class="desc-main" id="descMain"></p>
+              <p class="desc-sub">* 점수 구간: 안심(90~100) · 양호(70~89) · 보통(50~69) · 주의(30~49) · 위험(0~29)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 관련 사이트는 네가 나중에 더 다듬는 전제 -->
+    <section class="links" aria-label="관련 사이트">
+      <h2 class="links-title">관련 사이트</h2>
+      <div class="link-grid">
+        <a class="link-card" href="#" onclick="return false;">
+          <div class="link-name">경찰청</div>
+          <div class="link-desc">보이스피싱 예방 안내</div>
+        </a>
+        <a class="link-card" href="#" onclick="return false;">
+          <div class="link-name">금융감독원</div>
+          <div class="link-desc">금융사기 대응 안내</div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+<script src="js/main.js"></script>
 </body>
 </html>
