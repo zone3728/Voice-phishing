@@ -766,3 +766,22 @@ html, body{
   .call-overlay{ height: 100dvh; }
   .call-screen{ height: 100dvh; }
 }
+
+/* ===== 오버레이가 열릴 때만 가로 스크롤 방지 ===== */
+body.call-open{
+  overflow-x: hidden;      /* ✅ 가로만 잠금 */
+}
+
+/* 오버레이 자체도 가로만 잠금(세로는 허용) */
+body.call-open .call-overlay{
+  overflow-x: hidden;
+  overflow-y: auto;        /* ✅ 세로는 열어둠 */
+  overscroll-behavior: contain;
+}
+
+/* call-screen이 1~2px 넘치며 가로 스크롤 생기는 것 방지 */
+body.call-open .call-screen{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
